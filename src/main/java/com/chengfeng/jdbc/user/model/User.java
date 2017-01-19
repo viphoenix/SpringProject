@@ -8,6 +8,8 @@ public class User {
     String name;
     String createTime;
 
+    public User() {}
+
     public User(String name) {
         this.name = name;
     }

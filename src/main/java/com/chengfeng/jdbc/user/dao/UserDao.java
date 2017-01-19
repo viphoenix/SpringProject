@@ -1,5 +1,7 @@
 package com.chengfeng.jdbc.user.dao;
 
+import java.util.List;
+
 import com.chengfeng.jdbc.user.model.User;
 
 /**
@@ -11,5 +13,5 @@ public interface UserDao {
 
     public User findUserById(int id);
 
-    //public User findUserByName(String name);
+    public List<User> findUserByName(String name);
 }

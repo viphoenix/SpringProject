@@ -19,15 +19,27 @@
 
     <bean id="customer" class="com.chengfeng.inject.customer.Customer">
         <property name="lists">
-            <list>
-                <value>1</value>
-                <ref bean="user" />
-                <bean class="com.chengfeng.jdbc.user.model.User">
-                    <property name="id" value="1" />
-                    <property name="name" value="jack" />
-                    <property name="createTime" value="2017-01-09" />
-                </bean>
-            </list>
+            <bean class="org.springframework.beans.factory.config.ListFactoryBean">
+                <!--<property name="targetListClass">-->
+                    <!--<value>java.util.ArrayList</value>-->
+                <!--</property>-->
+                <property name="sourceList">
+                    <list>
+                        <value>one</value>
+                        <value>2</value>
+                        <value>three</value>
+                    </list>
+                </property>
+            </bean>
+            <!--<list>-->
+                <!--<value>1</value>-->
+                <!--<ref bean="user" />-->
+                <!--<bean class="com.chengfeng.jdbc.user.model.User">-->
+                    <!--<property name="id" value="1" />-->
+                    <!--<property name="name" value="jack" />-->
+                    <!--<property name="createTime" value="2017-01-09" />-->
+                <!--</bean>-->
+            <!--</list>-->
         </property>
         <property name="sets">
             <set>

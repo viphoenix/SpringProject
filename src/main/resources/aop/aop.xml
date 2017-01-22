@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--<bean id="customerBean" class="com.chengfeng.aop.dao.entity.Customer">-->
+        <!--<property name="name" value="mike" />-->
+        <!--<property name="url" value="www.baidu.com" />-->
+    <!--</bean>-->
+
+    <!--<bean id="customerServiceBean" class="com.chengfeng.aop.dao.service.CustomerService">-->
+        <!--<property name="customer" ref="customerBean" />-->
+    <!--</bean>-->
+
+    <bean id="printBeforeMethodBean" class="com.chengfeng.aop.aopmethod.PrintBeforeMethod" />
+    <bean id="printAfterMethodBean" class="com.chengfeng.aop.aopmethod.PrintAfterReturning" />
+    <bean id="throwingBean" class="com.chengfeng.aop.aopmethod.ThrowingException" />
+    <bean id="aroundBean" class="com.chengfeng.aop.aopmethod.PrintAroundMethod" />
+
+    <bean id="customerServiceProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="target" ref="customerService" />
+        <property name="interceptorNames">
+            <list>
+                <!--<value>printBeforeMethodBean</value>-->
+                <!--<value>printAfterMethodBean</value>-->
+                <!--<value>throwingBean</value>-->
+                <value>aroundBean</value>
+            </list>
+        </property>
+    </bean>
+</beans>

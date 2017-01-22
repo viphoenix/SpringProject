@@ -6,10 +6,11 @@
 	http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
     <!--使用@Component需要设置自动扫描-->
-    <context:component-scan base-package="com.chengfeng.init_destroy" />
+    <context:component-scan base-package="com.chengfeng" />
 
     <import resource="init_destroy/init_destroy.xml" />
     <import resource="inject/inject.xml" />
     <import resource="jdbc/jdbc.xml" />
+    <import resource="aop/aop.xml" />
 
 </beans>

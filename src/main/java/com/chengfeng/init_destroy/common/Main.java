@@ -3,6 +3,7 @@ package com.chengfeng.init_destroy.common;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.chengfeng.init_destroy.dao.LetterService;
 import com.chengfeng.init_destroy.dao.MessageService;
 
 /**
@@ -12,9 +13,9 @@ public class Main {
     public static void main(String[] args) {
         ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 
-        MessageService messageService = (MessageService) context.getBean("messageServiceBean");
+        LetterService letterService = (LetterService) context.getBean("letterService");
 
-        System.out.println(messageService);
+        System.out.println(letterService);
 
         context.close();
     }

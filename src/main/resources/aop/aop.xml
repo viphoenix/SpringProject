@@ -12,19 +12,28 @@
         <!--<property name="customer" ref="customerBean" />-->
     <!--</bean>-->
 
-    <bean id="printBeforeMethodBean" class="com.chengfeng.aop.aopmethod.PrintBeforeMethod" />
-    <bean id="printAfterMethodBean" class="com.chengfeng.aop.aopmethod.PrintAfterReturning" />
-    <bean id="throwingBean" class="com.chengfeng.aop.aopmethod.ThrowingException" />
-    <bean id="aroundBean" class="com.chengfeng.aop.aopmethod.PrintAroundMethod" />
+    <bean id="printBeforeMethodAdvisor" class="com.chengfeng.aop.aopmethod.PrintBeforeMethod" />
+    <bean id="printAfterMethodAdvisor" class="com.chengfeng.aop.aopmethod.PrintAfterReturning" />
+    <bean id="throwingMethodAdvisor" class="com.chengfeng.aop.aopmethod.ThrowingException" />
+    <bean id="aroundMethodAdvisor" class="com.chengfeng.aop.aopmethod.PrintAroundMethod" />
+
+    <!--为aroundMethodAdvisor建立CutPoint-->
+    <bean id="printNameCutPoint" class="org.springframework.aop.support.NameMatchMethodPointcut">
+        <property name="mappedName" value="printName" />
+    </bean>
+    <bean id="customerAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+        <property name="pointcut" ref="printNameCutPoint" />
+        <property name="advice" ref="aroundMethodAdvisor" />
+    </bean>
 
     <bean id="customerServiceProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
         <property name="target" ref="customerService" />
         <property name="interceptorNames">
             <list>
-                <!--<value>printBeforeMethodBean</value>-->
-                <!--<value>printAfterMethodBean</value>-->
-                <!--<value>throwingBean</value>-->
-                <value>aroundBean</value>
+                <!--<value>printBeforeMethodAdvisor</value>-->
+                <!--<value>printAfterMethodAdvisor</value>-->
+                <!--<value>throwingMethodAdvisor</value>-->
+                <value>customerAdvisor</value>
             </list>
         </property>
     </bean>
